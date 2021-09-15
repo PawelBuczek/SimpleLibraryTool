@@ -6,7 +6,10 @@ public enum ItemType {
     Magazine(4);
 
     private int borrowLimit;
-    ItemType(int borrowLimit){this.borrowLimit = borrowLimit;}
+
+    ItemType(int borrowLimit) {
+        this.borrowLimit = borrowLimit;
+    }
 
     public void setBorrowLimit(int borrowLimit) {
         this.borrowLimit = borrowLimit;
