@@ -12,7 +12,6 @@ public class ExampleOfUsage {
     private static int pawelId = 0;
     private static int leeId = 0;
 
-    //example of usage
     public static void main(String[] args) throws IncorrectUserIdException, IncorrectPhysicalItemIdException, CannotBorrowItemException, IncorrectVirtualItemISBNException, CannotReturnItemException {
         Library library = new Library();
         initializeLibrary(library);
@@ -102,7 +101,6 @@ public class ExampleOfUsage {
         exemplaryItemId = library.addPhysicalItem("0001-A");
         library.addVirtualAndPhysicalItem("0001-B", "Wheel Of Time (2nd print)", Year.of(2002), "Robert Jordan", ItemType.Book);
         library.addVirtualAndPhysicalItem("0002", "Java for Juniors", Year.of(2015), "smart guy", ItemType.Book);
-        //not sure if this should work in that way, but no BA to ask
         library.addVirtualAndPhysicalItem("0002", "Java for Juniors", Year.of(2015), "smart guy", ItemType.Book);
         library.addVirtualItem("0003", "Horror", Year.of(2011), "horrorWriter", ItemType.Book);  //virtual item is added, but no physical copies available
         library.addVirtualAndPhysicalItem("0004", "Comedy", Year.of(1993), "Robert Jordan", ItemType.Book);
