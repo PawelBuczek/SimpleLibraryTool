@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Library {
+    //normally we would want to have an id, name, address, contact details, etc. etc.
     private final Set<User> userSet = new HashSet<>();
     private final Set<VirtualItem> virtualItemSet = new HashSet<>();
     private final Set<PhysicalItem> physicalItemSet = new HashSet<>();
@@ -146,7 +147,23 @@ public class Library {
             throw new CannotRemoveUserException("User with id: " + user.getUserId() + " cannot be removed." + System.lineSeparator()
                     + "This user still has " + user.getBorrowedItems().size() + " item(s) borrowed.");
         }
+    }
 
+    public User getUserThatBorrowedItemWithId(int physicalItemId) throws IncorrectPhysicalItemIdException {
+        PhysicalItem physicalItem = getPhysicalItemById(physicalItemId);
+        if (!physicalItem.isBorrowed()) {
+            return null;
+        } else {
+            Optional<User> optionalUser = userSet.stream()
+                    .filter(user -> user.getBorrowedItems().get(physicalItem.getVirtualItem().getType()).contains(physicalItem))
+                    .findAny();
+            if (optionalUser.isEmpty()) {
+                throw new Error("Something went wrong - Item with id: " + physicalItemId
+                        + "is currently borrowed, but user who borrowed it cannot be found.");
+            } else {
+                return optionalUser.get();
+            }
+        }
     }
 
     public User getUserById(int userId) throws IncorrectUserIdException {

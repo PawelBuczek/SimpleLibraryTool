@@ -59,12 +59,12 @@ class VirtualItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VirtualItem that = (VirtualItem) o;
-        return ISBN.equals(that.ISBN) && type == that.type;
+        return ISBN.equals(that.ISBN);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ISBN, type);
+        return Objects.hash(ISBN);
     }
 
     @Override

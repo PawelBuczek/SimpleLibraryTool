@@ -15,6 +15,9 @@ class User {
     }
 
     public boolean borrowItem(PhysicalItem physicalItem) throws CannotBorrowItemException {
+        if (physicalItem.isBorrowed()) {
+            throw new CannotBorrowItemException("Item with id: " + physicalItem.getId() + " is already borrowed.");
+        }
         ItemType type = physicalItem.getVirtualItem().getType();
         borrowedItems.computeIfAbsent(type, k -> new ArrayList<>());
         if (borrowedItems.get(type).size() < type.getBorrowLimit()) {
